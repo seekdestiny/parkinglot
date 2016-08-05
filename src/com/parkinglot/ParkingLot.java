@@ -1,13 +1,11 @@
 package com.parkinglot;
 
-import java.util.*;
-
 public class ParkingLot {
 	private Level[] levels;
 	
-	/**given a vehichle, tell me whether I can park it?**/
+	/**given a vehicle, tell me whether I can park it?**/
 	public boolean hasSpot(Vehicle v) {
-	//Todo: check each level, for each level, call Level#hasSpot(Vehicle)
+	//TODO: check each level, for each level, call Level#hasSpot(Vehicle)
 		return true;
 	}
 	
@@ -22,8 +20,30 @@ class Level {
 }
 
 class ParkingSpot {
-	//boolean fit(Vehicle): check size and availability
+	private VehicleSize size;
+	private Vehicle currentVehicle;//null if no vehicle is parked inside
 	
+	//boolean fit(Vehicle): check size and availability
+	public boolean fit(Vehicle v) {
+		if (currentVehicle == null) {
+			// check size
+			return size.ordinal() >= v.getSize().ordinal();//TODO not using ordinal
+		}
+		return false;
+	}
+	
+	/**record a vehicle is parked in by updating the currentVehicle field*/
+	public boolean park(Vehicle v) {// boolean park(Vehicle v)
+		if (fit(v)) { // call fit first
+			currentVehicle = v; 
+			return true;
+		}
+		return false;
+	}
+	
+	public void leave() {
+		currentVehicle = null;
+	}
 }
 
 enum VehicleSize {
