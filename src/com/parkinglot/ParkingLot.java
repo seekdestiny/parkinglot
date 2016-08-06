@@ -1,5 +1,8 @@
 package com.parkinglot;
 
+import java.util.List;
+import java.util.ArrayList;
+
 public class ParkingLot {
 	private Level[] levels;
 	
@@ -15,8 +18,35 @@ public class ParkingLot {
 }
 
 class Level {
-	//tracking Parking Spots
-	//boolean hasSpot(Vehicle);
+	private final List<ParkingSpot> spots;
+	//level number
+	Level(int numOfSpots) {
+		spots = new ArrayList<ParkingSpot>(numOfSpots);
+		for (int i = 0; i < numOfSpots; i++) {
+			spots.add(new ParkingSpot());
+		}
+	}
+	
+	boolean hasSpot(Vehicle v) {
+		for (ParkingSpot s : spots) {
+			if (s.fit(v)) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	boolean park(Vehicle v) {
+		for (ParkingSpot s : spots) {
+			if (s.fit(v)) {
+				s.park(v);
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	//TODO: leave
 }
 
 class ParkingSpot {
