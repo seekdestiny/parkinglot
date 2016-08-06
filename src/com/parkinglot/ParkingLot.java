@@ -7,10 +7,17 @@ public class ParkingLot {
 	private Level[] levels;
 	
 	//TODO constructor method
+	public ParkingLot(int numOfLevels, int numOfSpots) {
+		levels = new Level[numOfLevels];
+		for (int i = 0; i < numOfLevels; i++) {
+			levels[i] = new Level(numOfSpots);
+		}
+	}
 	
 	/**given a vehicle, tell me whether I can park it?**/
 	public boolean hasSpot(Vehicle v) {
 	//TODO: check each level, for each level, call Level#hasSpot(Vehicle)
+		
 		return true;
 	}
 	
