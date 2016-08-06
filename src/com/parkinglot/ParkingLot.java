@@ -6,7 +6,6 @@ import java.util.ArrayList;
 public class ParkingLot {
 	private Level[] levels;
 	
-	//TODO constructor method
 	public ParkingLot(int numOfLevels, int numOfSpots) {
 		levels = new Level[numOfLevels];
 		for (int i = 0; i < numOfLevels; i++) {
